@@ -1,0 +1,8 @@
+Create a custom users collection adding additional attribute named "rentedprops"
+create collection "rentedprops" {name,location,price,user email contact}
+
+rendering collection of rentedprops
+
+visibility of pay button available only when loggedIn
+
+dynamic creation of <li> tags

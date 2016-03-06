@@ -1,0 +1,25 @@
+
+Templates
+Template.body.helpers -> Helpers, Events
+<template name="somename">
+
+Template.somename.helpers
+
+Installed mqtt broker with all the required dependencies.
+mqtt client works by connecting to mqtt://localhost
+
+understand Route Handling for SPA and backend
+understand accounts package
+
+we will use websockets for realtime communication
+
+remember meteor doesn't allow for asynchronous style coding: where callbacks and promises exists. Instead it has more of a synchronous but non-blocking style of code achieved through Fiber
+
+Why use Mongo always in Meteor? Even redis can be useful when it comes to caching data? check caching performance Mongo vs Redis
+
+What is optimistic UI (a.k.a latency compensation)? Has to do with methods
+
+
+https://www.discovermeteor.com/blog/what-goes-where/ - Nice post to get started superficially
+
+How to use Templates and Views when it comes to views
