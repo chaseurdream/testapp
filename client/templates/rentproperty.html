@@ -8,3 +8,14 @@
     </div>
   {{/each}}
 </template>
+
+<template name="full_rentdetails">
+  {{#with rentedprop}}
+    <div class="jumbotron">
+      <div><span class="label label-primary">Name</span>{{name}} </div>
+      <div><span class="label label-primary">Location</span>{{location}} </div>
+      <div><span class="label label-primary">Price</span>{{price.min}} - {{price.max}} </div>
+      <input type="button" class="getquote" value="Get Quote"/>
+    </div>
+  {{/with}}
+</template>

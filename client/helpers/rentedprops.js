@@ -8,8 +8,16 @@ Template.mini_rentdetails.helpers({
 
 Template.mini_rentdetails.events({
   "click .getquote": function(ev, tmpl){
-    // this returns the ref of document from mongo collection: 
+    // this returns the ref of document from mongo collection:
+    BlazeLayout.render("SiteTemplate", {top:"loginPage", middle:"full_rentdetails", bottom:"tabbedview"});
+    Session.set( "selectedprop", this );
     console.log(this, "just got clicked");
     return this;
+  }
+});
+
+Template.full_rentdetails.helpers({
+  rentedprop: function(){
+    return Session.get( "selectedprop");
   }
 });
