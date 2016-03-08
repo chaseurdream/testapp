@@ -22,6 +22,7 @@ What is optimistic UI (a.k.a latency compensation)? Has to do with methods
 
 https://www.discovermeteor.com/blog/what-goes-where/ - Nice post to get started superficially
 http://www.primaryobjects.com/2015/07/06/a-meteor-js-review-and-tutorial-for-single-page-web-application-development/
+https://meteorhacks.com/meteor-ui-pattern-keeping-app-state-in-the-url/ - UI Patterns
 
 How to use Templates and Views when it comes to views
 

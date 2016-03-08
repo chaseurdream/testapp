@@ -1,6 +1,6 @@
 Template.mini_rentdetails.helpers({
   rentedprops: function(){
-    return RentedProps.find();
+    return RentedProps.find().map(function(x){x.avgprice= (x.price.max + x.price.min)/2; return x;});
     // return [{name:"se view",price:{min:0,max:100},location:"berlin"}];
   }
 });

@@ -13,5 +13,5 @@ Template.spinview.events({
 });
 
 spinwheel = function(minPrice, maxPrice){
-  return minPrice + Math.random() * (maxPrice - minPrice)
+  return Math.round(minPrice + Math.random() * (maxPrice - minPrice), 2)
 };
