@@ -1,8 +1,8 @@
 <template name="tabbedview">
   <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Method1</a></li>
-    <li role="presentation"><a href="#">Method2</a></li>
+    <li role="presentation" class="active"><a id="method1" href="#">Method1</a></li>
+    <li role="presentation" ><a  id="method2" href="#">Method2</a></li>
     <!-- <li role="presentation"><a href="#">Messages</a></li> -->
   </ul>
-  {{>spinview}}
+  {{> Template.dynamic template=paymentmode}}
 </template>

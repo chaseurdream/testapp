@@ -6,3 +6,9 @@ rendering collection of rentedprops
 visibility of pay button available only when loggedIn
 
 dynamic creation of <li> tags
+
+
+Need to work on exchange of messages across different logins 
+using - Optimistic UI, or some messaging platform to exchange messages or through Latency Compensation
+
+remove packages - insecure and autopublish
