@@ -29,3 +29,35 @@ How to use Templates and Views when it comes to views
 What does reactive-var do?
 
 How to maintain states and page navigation?
+
+Interesting packages 
+meteor_up: Chef like package useful for setting up our own servers
+velocity: testing package
+
+Deployment:
+1. Heroku - 
+2. Modulus - app deployment platform for node applications - convert meteor apps to node like apps using  Demeteorizer 
+3. RockerDocker - Something around docker
+
+Pointers for meteor - 
+	State of Deployment
+	testing
+	error handling
+	async needs better queueing 
+
+
+
+Very nice video - https://www.youtube.com/watch?v=tqLbodVH3dw - CS 294-101 - 02 Matt Debergalis: The design and implementation of the Meteor platform - https://gist.github.com/debergalis/bf76084cdb1434d8733d/
+MEteor implements DDP and makes use of EJSON (extended JSON- mostly used to simiplify serialization of Date like data types)
+DDP - distributed data protocol -- mostly like CORBA and similar 90's type communication protocol and not like HTTP.
+
+Meteor makes use of poll and diff method in order to check for changes in database.
+
+Mongodb writes to Oplog every time it makes a write operation.  - Oplog tailing
+
+http://inst.eecs.berkeley.edu/~cs294-101/sp15/ - good link of course material for web tech
+http://webtech-cs294.tumblr.com/
+
+
+make note of following packages:
+- autoform or collection2 or collection-helpers

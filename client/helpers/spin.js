@@ -1,7 +1,6 @@
 Template.spinview.helpers({
   luckyprice:function(){
     price = Session.get('selectedprop').price;
-    debugger;
     return spinwheel(price.min, price.max);
   }
 });
