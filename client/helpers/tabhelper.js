@@ -1,9 +1,16 @@
+var toggletabs = function(ev, tmpl){
+    $(tmpl.findAll("li")).removeClass('active');
+    $(ev.toElement).parent().addClass('active');
+}
+
+
 Template.tabbedview.events({
 	"click #method1":function(ev,tmpl){
-		console.log("Clicked 1");
+                toggletabs(ev, tmpl);
+                BlazeLayout.render("SiteTemplate", {top:"loginPage", middle:"full_rentdetails", bottom:"tabbedview" , paymentmode:"spinview"});
 	},
 	"click #method2":function(ev,tmpl){
-		BlazeLayout.render("tabbedview",{paymentmode:"bargainspace"})
-
+                toggletabs(ev, tmpl);
+                BlazeLayout.render("SiteTemplate", {top:"loginPage", middle:"full_rentdetails", bottom:"tabbedview" , paymentmode:"bargainspace"});
 	}
 });

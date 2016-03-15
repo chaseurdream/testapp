@@ -1,3 +1,30 @@
 <template name="bargainspace">
-	<p>Some content here</p>
+    <div class="row margintop15">
+        <div class="col-lg-3"><p class="text-muted text-center">Enter budget: </p></div>
+        <input class="col-lg-2 minbudget" type="text"/><span class="col-lg-1 text-center">UPTO</span>
+        <input class="col-lg-2  maxbudget" type="text"/>
+        <button class="btn btn-primary btn-sm col-lg-2 finalbudget" >Finalize Budget</button>
+    </div>
+    <div class="row margintop15">
+        {{#each bargainattempts}}
+            {{> rejectedbargain}}
+            {{> acceptedbargain}}
+        {{/each}}
+        {{> quoteprice}}
+    </div>
+</template>
+
+
+<template name="quoteprice">
+    <input class="col-lg-2 bargainprice" type="text">
+    <button class="btn btn-primary col-lg-2 bargain col-lg-offset-1" text="Bargain">Bargain</button>
+    <button class="btn btn-primary col-lg-2 pullout" text="Pullout">Pullout</button>
+</template>
+
+<template name="rejectedbargain">
+    <p>Bargain price of {{rejectedbargainprice}} declined</p>
+</template>
+
+<template name="acceptedbargain">
+    <p>Offered price {{acceptablebargainprice}} </p>
 </template>

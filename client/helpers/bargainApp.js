@@ -1,3 +1,10 @@
+
+//Accounts.onLogin(function(){
+//  console.log("time to render another view");
+//  // FlowRouter.go("/properties");
+//})
+
+
 // if (Meteor.isClient) {
 //   // counter starts at 0
 //   Session.setDefault('counter', 0);
