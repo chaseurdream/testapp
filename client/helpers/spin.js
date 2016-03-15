@@ -1,3 +1,6 @@
+// var bidroundno = new ReactiveDict;
+
+
 var updateBargain = function(data){
     Meteor.call("updatebargain", Bargain, data);
 }
@@ -6,8 +9,9 @@ var recordBargain = function(){
     var propertyid = FlowRouter.getParam("propertyid");
     var oid = new Meteor.Collection.ObjectID(propertyid);
     var oRentedProp = RentedProps.findOne(oid);
-    var bidroundno = Session.get("roundno") || 0;
-    Session.set("roundno", ++bidroundno);
+    var bidroundno = 0;
+    // var bidroundno = bidroundno.get("roundno") || 0;
+    // bidroundno.set("roundno", ++bidroundno);
     data = {  
         propertyid:propertyid 
         , bidroundno:bidroundno 
@@ -29,16 +33,13 @@ var luckyprice = 0;
 
 Template.spinview.onCreated(function(){
     var self = this;
-    Tracker.autorun(function(){
-        Meteor.subscribe("bargain", function(){
-            Bargain.find().fetch();
-        });
-    })
     self.autorun(function(){
         var propertyid = FlowRouter.getParam("propertyid");
         self.subscribe("rentedprops", propertyid, function(){
            // recordBargain(); 
         })
+
+        self.subscribe("bargain");// Just return total number of entries in bargain (bargainhistory)
     });
 });
 
@@ -50,7 +51,11 @@ Template.spinview.helpers({
     var propertyid = FlowRouter.getParam("propertyid");
     var oid = new Meteor.Collection.ObjectID(propertyid);
     var oRentedProp = RentedProps.findOne(oid);
-    luckyprice = spinwheel(oRentedProp.price.min, oRentedProp.price.max);
+    // bidroundno.get('bidroundno')
+    if(Bargain.find().fetch().length < 5){ // should give bidroundno
+        luckyprice = spinwheel(oRentedProp.price.min, oRentedProp.price.max);
+    }
+    console.log("Existing Lucky price", luckyprice)
     return luckyprice;
     //price = Session.get("selectedprop").price;
     //return spinwheel(price.min, price.max);
@@ -94,7 +99,9 @@ Template.spinview.events({
         // would always create new entry into bargains collection
         ev.preventDefault();
         // default is always declined
-        recordBargain();
+        if(Bargain.find().fetch().length < 5){
+            recordBargain();
+        }
         // Blaze.render(this, document.body);
     }
 });
