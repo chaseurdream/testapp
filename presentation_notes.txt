@@ -42,35 +42,11 @@ UK's initiative to provide shelter to all.
 http://www.shelterat50.org.uk/#/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 I am one of the subscribers of ImmigrantSpirit, a service run by Mr. Chris Pyak. It's through Chris, that I came to know about Homelike.
 Mr. Dustin Figge was one of the guest speakers at the webinar hosted by Chris. I learnt from the webinar that Homelike was looking out for Javascript developers and 
 
 
 An answer that could be best answered by Dustin, Christopher and Adam.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -99,3 +75,13 @@ One of the studies done at the startup I work suggests - Offers drive users to a
 GIve examples of laddoo app, how quikwallet drove it's transactions up by providing offers. and how things sustained after taking them off.
 Create a habit among users. Many times it has become a habit to check gmail, facebook app, or whatsapp for messages.
 crownit - A gamified version of providing offers to users.
+
+
+References:
+http://www.zacks.com/stock/news/200846/investing-in-resting-is-airbnb-a-top-2016-ipo-candidate
+http://scholar.dominican.edu/cgi/viewcontent.cgi?article=1189&context=masters-theses
+http://www.sfbos.org/Modules/ShowDocument.aspx?documentid=52601
+http://www.investors.com/news/technology/airbnb-political-win-does-not-end-conflicts/
+http://www.ahla.com/uploadedFiles/_Common/pdf/PennState_AirBnbReport_.pdf
+
+**** Should make use of VR technology to show people rooms and facilities
