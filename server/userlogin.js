@@ -11,7 +11,14 @@ Meteor.publish("rentedprops", function(propertyid){
 
 
 Meteor.publish("bargain", function(){
-    return Bargain.find();
+    var varargs;
+    varargs = arguments;
+    propertyid = (ref = arguments[0], ref !== undefined ? ref: {$ne:null});
+    host = (ref = arguments[1], ref !== undefined ? ref: {$ne:null});
+    guest = (ref = arguments[2], ref !== undefined ? ref : {$ne:null});
+    greaterthandate = (ref = arguments[3], ref !== undefined ? new Date(ref) : new Date('1900-01-01'));
+    // console.log(Bargain.find({propertyid:propertyid,host:host,guest:guest,createdAt:{$gte:greaterthandate}}).fetch());
+    return Bargain.find({propertyid:propertyid,host:host,guest:guest,createdAt:{$gte:greaterthandate}});
 })
 
 Accounts.onLogin(function(){

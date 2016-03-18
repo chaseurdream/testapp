@@ -1,15 +1,27 @@
 // var bidroundno = new ReactiveDict;
+/* Try and understand how to obtain data associated with template/view similar to @model.get() */
 
 
 var updateBargain = function(data){
-    Meteor.call("updatebargain", Bargain, data);
-}
-
-var recordBargain = function(){
     var propertyid = FlowRouter.getParam("propertyid");
     var oid = new Meteor.Collection.ObjectID(propertyid);
     var oRentedProp = RentedProps.findOne(oid);
-    var bidroundno = 0;
+    // var datepastmonth = moment().subtract(1,'months');
+    var datepastmonth = new Date('2016-02-20')// moment().subtract(1,'months');
+    selector = {
+        propertyid: propertyid
+        , host:oRentedProp.owner.email
+        , guest:Meteor.user().emails[0].address
+        , createdAt:{$gte: datepastmonth}
+    }
+    Meteor.call("updatebargain", selector, {$set:data});
+}
+
+var recordBargain = function(bidno){
+    var propertyid = FlowRouter.getParam("propertyid");
+    var oid = new Meteor.Collection.ObjectID(propertyid);
+    var oRentedProp = RentedProps.findOne(oid);
+    var bidroundno = bidno || 0;
     // var bidroundno = bidroundno.get("roundno") || 0;
     // bidroundno.set("roundno", ++bidroundno);
     data = {  
@@ -21,6 +33,7 @@ var recordBargain = function(){
         , host:oRentedProp.owner.email
         , guestofferstatus: 'declined'/* <accept, pullout, declined > */
         , hostofferstatus: null /*always accepted as it falls under host's price range */
+        , createdAt: new Date()
     }
     Meteor.call("recordbargain", data);
 }
@@ -36,10 +49,14 @@ Template.spinview.onCreated(function(){
     self.autorun(function(){
         var propertyid = FlowRouter.getParam("propertyid");
         self.subscribe("rentedprops", propertyid, function(){
-           // recordBargain(); 
+            var oid = new Meteor.Collection.ObjectID(propertyid);
+            var oRentedProp = RentedProps.findOne(oid);
+            // var datepastmonth = moment().subtract(1,'months');
+            var datepastmonth = moment().subtract(1,'months').format('YYYY-MM-DD');
+            self.subscribe("bargain", propertyid, oRentedProp.owner.email, Meteor.user().emails[0].address, datepastmonth);// Just return total number of entries in bargain (bargainhistory)
         })
 
-        self.subscribe("bargain");// Just return total number of entries in bargain (bargainhistory)
+        
     });
 });
 
@@ -52,23 +69,30 @@ Template.spinview.helpers({
     var oid = new Meteor.Collection.ObjectID(propertyid);
     var oRentedProp = RentedProps.findOne(oid);
     // bidroundno.get('bidroundno')
-    if(Bargain.find().fetch().length < 5){ // should give bidroundno
+    bidno = Bargain.find().fetch().length
+    if(bidno == 0){
+        luckyprice = (oRentedProp.price.min + oRentedProp.price.max)/2;
+    }else if(bidno < 5){ // should give bidroundno
         luckyprice = spinwheel(oRentedProp.price.min, oRentedProp.price.max);
     }
-    console.log("Existing Lucky price", luckyprice)
     return luckyprice;
     //price = Session.get("selectedprop").price;
     //return spinwheel(price.min, price.max);
   },
 });
 
+var selector;
 
 Template.spinhistory.onCreated(function(){
     var self = this;
     self.autorun(function(){
-        self.subscribe("bargain", function(){
-            console.log("Recordbargain");
-        })
+        var propertyid = FlowRouter.getParam("propertyid");
+        self.subscribe("rentedprops", propertyid, function(){
+            var oid = new Meteor.Collection.ObjectID(propertyid);
+            var oRentedProp = RentedProps.findOne(oid);
+            var datepastmonth = moment().subtract(1,'months').format('YYYY-MM-DD');
+            self.subscribe("bargain", propertyid, oRentedProp.owner.email, Meteor.user().emails[0].address, datepastmonth);// Just return total number of entries in bargain (bargainhistory)
+        });
     });
 });
 
@@ -95,14 +119,21 @@ Template.spinview.events({
         }
         updateBargain(data);
     },
-    'click .rollluck':function(ev, tmpl, any, more){
+    'click .rollluck':function(ev, tmpl){
         // would always create new entry into bargains collection
         ev.preventDefault();
+        //data = {
+        //    offerstatus: "declined"
+        //}
+        //updateBargain(data);
         // default is always declined
-        if(Bargain.find().fetch().length < 5){
-            recordBargain();
+        //
+        bargainroundno = Bargain.find().fetch().length
+        if(bargainroundno < 5){
+            recordBargain(bargainroundno);
         }
-        // Blaze.render(this, document.body);
+        
+        // Blaze.render(tmpl.view, document.body);
     }
 });
 
