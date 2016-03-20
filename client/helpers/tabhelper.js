@@ -1,5 +1,5 @@
 var toggletabs = function(ev, tmpl){
-    $(tmpl.findAll("li")).removeClass('active');
+    $(tmpl.findAll("li.paymentmodes")).removeClass('active');
     $(ev.toElement).parent().addClass('active');
 }
 

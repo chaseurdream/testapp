@@ -11,9 +11,13 @@ dynamic creation of <li> tags
 Need to work on exchange of messages across different logins 
 using - Optimistic UI, or some messaging platform to exchange messages or through Latency Compensation
 
-remove packages - insecure and autopublish
+(DONE) remove packages - insecure and autopublish
 
 - implement role based view rendering
 - point system (later)
 - implement bargain logic
 
+- Improve CSS - MAJOR TASK
+- hosts view PENDING - mypropertylisting, editpropdetails, bargainspaceforhosts
+- 
+- 

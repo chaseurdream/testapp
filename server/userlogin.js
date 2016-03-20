@@ -1,4 +1,5 @@
 // accountServer = new AccountsServer(Meteor.server);
+
 Meteor.publish("rentedprops", function(propertyid){
     if(propertyid){
         console.log("Using propertyid")
