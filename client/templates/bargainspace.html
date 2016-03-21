@@ -29,7 +29,11 @@
 <template name="responses">
     
     <div class="container">
-        <span>Bid price {{bidprice}} declined.</span> 
+        {{#if sysmanipulatedbidprice}}
+            <span>Bid price below {{sysmanipulatedbidprice}} not entertained.</span> 
+        {{else}}
+            <span>Bid price {{bidprice}} declined.</span> 
+        {{/if}}
         {{#if newaskingprice}}
             <span> New asking price is {{newaskingprice}}</span>
         {{else}}

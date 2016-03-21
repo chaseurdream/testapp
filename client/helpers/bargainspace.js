@@ -2,11 +2,13 @@ var propertyid;
 
 Template.bargainspace.onCreated(function(){
     var self = this;
+
+    propertyid = FlowRouter.getParam("propertyid");
+
     self.isbudgetlocked = new ReactiveVar("");
     self.autorun(function(){
-        self.subscribe('bargainmode2', function(){
+        self.subscribe('bargainmode2', propertyid, function(){
         });
-        propertyid = FlowRouter.getParam("propertyid");
         self.subscribe('rentedprops',propertyid, function(){
         });
     })

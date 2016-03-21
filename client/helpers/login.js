@@ -5,5 +5,12 @@ Template.loginPage.helpers({
             return false;
         else 
             return true;
+    },
+    isMyPropertyListing:function(){
+        var routeName = FlowRouter.getRouteName();
+        if(routeName == "myproperties")
+            return false;
+        else 
+            return true;
     }
 })

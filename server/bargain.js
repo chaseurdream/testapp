@@ -1,7 +1,7 @@
-Meteor.publish('bargainmode2', function(filter){
+Meteor.publish('bargainmode2', function(filter, options){
     userid = this.userId;
     guestemail =  Meteor.users.findOne({_id: this.userId}).emails[0].address;
-    filter = filter || {modeofpayment:"method2", guest:guestemail}
+    filter = {modeofpayment:"method2", propertyid: filter, guest:guestemail, hostofferstatus:{$in:["pending","declined"]}}
     return Bargain.find(filter);
 })
 
@@ -60,6 +60,7 @@ makebid = function(propertyid, bidprice, budget){
         ,guest: guestemail
         ,guestbudget: budget
         ,bidprice: bidprice
+        ,guestofferstatus:"pending"
         ,host: hostemail
         ,hostbudget: {min:propdetails.price.min,max:propdetails.price.max}
         ,askingprice:lastbiddetails.askingprice
